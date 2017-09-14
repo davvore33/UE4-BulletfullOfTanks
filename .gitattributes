@@ -1,0 +1,15 @@
+*.uasset filter=lfs diff=lfs merge=lfs -text
+Content/LandScape.uasset filter=lfs diff=lfs merge=lfs -text
+Content/Modelli filter=lfs diff=lfs merge=lfs -text
+Content/Water.uasset filter=lfs diff=lfs merge=lfs -text
+Content/Collections filter=lfs diff=lfs merge=lfs -text
+Content/BattleGround_sharedassets filter=lfs diff=lfs merge=lfs -text
+Content/BulletfullOfTanksGameModeBase_BP.uasset filter=lfs diff=lfs merge=lfs -text
+Content/Developers filter=lfs diff=lfs merge=lfs -text
+Content/MainMenu.umap filter=lfs diff=lfs merge=lfs -text
+Content/TankPlayerController_BP.uasset filter=lfs diff=lfs merge=lfs -text
+Content/BattleGround_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
+Content/Main_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
+Content/MainMenu_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
+Content/UI filter=lfs diff=lfs merge=lfs -text
+Content/BattleGround.umap filter=lfs diff=lfs merge=lfs -text
