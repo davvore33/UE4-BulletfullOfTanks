@@ -11,7 +11,7 @@ include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediat
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/Definitions.cmake")
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/BulletfullOfTanksEditor.cmake")
 
-set(MONO_ROOT_PATH "C:/Program Files/Epic Games/UE_4.17/Engine/Binaries/DotNET")
+set(MONO_ROOT_PATH "C:/Program Files/Epic Games/UE_4.16/Engine/Binaries/DotNET")
 set(BUILD cd /d "${MONO_ROOT_PATH}")
 
 # Custom target for BulletfullOfTanksEditor project, Development configuration
