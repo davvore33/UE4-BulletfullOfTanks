@@ -9,7 +9,7 @@
 #include "TankPC.generated.h" //Must be the very last include
 
 /**
- * 
+ * Tank Player Controller class
  */
 UCLASS()
 class BULLETFULLOFTANKS_API ATankPC : public APlayerController
@@ -18,5 +18,6 @@ class BULLETFULLOFTANKS_API ATankPC : public APlayerController
 
 public:
     ATank* GetControlledTank() const;
-	
+
+    virtual void BeginPlay() override;
 };

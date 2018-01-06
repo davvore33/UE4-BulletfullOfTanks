@@ -4,8 +4,8 @@ set(CMAKE_CXX_STANDARD 11)
 
 SET(CMAKE_CXX_USE_RESPONSE_FILE_FOR_OBJECTS 1 CACHE BOOL "" FORCE)
 SET(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES 1 CACHE BOOL "" FORCE)
-set(CMAKE_CXX_COMPILER "C:/cygwin64/bin/clang-3.9.exe")
-set(CMAKE_C_COMPILER "C:/cygwin64/bin/clang-3.9.exe")
+set(CMAKE_CXX_COMPILER "C:/cygwin64/bin/g++.exe")
+set(CMAKE_C_COMPILER "C:/cygwin64/bin/gcc.exe")
 
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/IncludeDirectories.cmake")
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/Definitions.cmake")
