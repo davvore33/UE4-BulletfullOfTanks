@@ -3,14 +3,14 @@
 #include "TankPC.h"
 
 void ATankPC::BeginPlay() {
-    auto pTank;
+    ATank *pTank;
 
     Super::BeginPlay();
 
     pTank = GetControlledTank();
 
-    if (!pTank) { //WARNING: Don't compare to `nullptr` otherwise crash
-        UE_LOG(LogTemp, Warning, TEXT("%s: Got %s"), *pTank->GetName());
+    if (IsValid(pTank)) { //WARNING: Don't compare to `nullptr` otherwise crash
+        UE_LOG(LogTemp, Warning, TEXT("Got %s"), *pTank->GetName());
     } else {
         UE_LOG(LogTemp, Error, TEXT("Got a NULL"));
     }
@@ -29,6 +29,17 @@ ATank *ATankPC::GetControlledTank() const {
 
 void ATankPC::AimPlayerCrosshair() {
     if (GetControlledTank()) {
+        FVector HitLocation;
+
+        if (GetSightRayHitLocation(OUT HitLocation)) UE_LOG(LogTemp, Warning,
+                                                            TEXT("Hit Location: %s"),
+                                                            *HitLocation.ToString());
+
         // hit stuff
     }
+}
+
+bool ATankPC::GetSightRayHitLocation(OUT FVector &HitLocation) {
+    HitLocation = FVector(1.0);
+    return true;
 }
