@@ -31,15 +31,20 @@ void ATankPC::AimPlayerCrosshair() {
     if (GetControlledTank()) {
         FVector HitLocation;
 
-        if (GetSightRayHitLocation(OUT HitLocation)) UE_LOG(LogTemp, Warning,
-                                                            TEXT("Hit Location: %s"),
-                                                            *HitLocation.ToString());
+        if (GetSightRayHitLocation(OUT HitLocation))
+//            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
+//                   *HitLocation.ToString());
 
-        // hit stuff
     }
 }
 
 bool ATankPC::GetSightRayHitLocation(OUT FVector &HitLocation) {
-    HitLocation = FVector(1.0);
+    int32 sizeX, sizeY;
+    FVector2D ScreenLocation;
+    GetViewportSize(sizeX, sizeY);
+
+    ScreenLocation = FVector2D(sizeX * CrossHairXLocation,
+                               sizeY * CrossHairYLocation);
+
     return true;
 }

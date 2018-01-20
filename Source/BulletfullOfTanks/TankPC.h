@@ -23,6 +23,11 @@ public:
     virtual void BeginPlay() override;
 
 private:
-    bool GetSightRayHitLocation(OUT FVector &HitLocation);
     void AimPlayerCrosshair();
+    bool GetSightRayHitLocation(OUT FVector &HitLocation);
+
+    UPROPERTY(EditAnywhere)
+    float CrossHairXLocation = 0.5;
+    UPROPERTY(EditAnywhere)
+    float CrossHairYLocation = 0.5;
 };
