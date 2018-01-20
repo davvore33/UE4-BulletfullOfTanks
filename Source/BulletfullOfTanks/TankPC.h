@@ -21,4 +21,7 @@ public:
 
     virtual void Tick(float) override;
     virtual void BeginPlay() override;
+
+private:
+    void AimPlayerCrosshair();
 };

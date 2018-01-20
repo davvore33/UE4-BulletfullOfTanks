@@ -2,11 +2,6 @@
 
 #include "TankPC.h"
 
-void ATankPC::Tick(float DeltaTime) {
-    Super::Tick(DeltaTime);
-    UE_LOG(LogTemp, Warning, TEXT("Ticking"));
-}
-
 void ATankPC::BeginPlay() {
     auto pTank;
 
@@ -23,6 +18,17 @@ void ATankPC::BeginPlay() {
     UE_LOG(LogTemp, Warning, TEXT("Begin Play"));
 }
 
+void ATankPC::Tick(float DeltaTime) {
+    Super::Tick(DeltaTime);
+    AimPlayerCrosshair();
+}
+
 ATank *ATankPC::GetControlledTank() const {
     return Cast<ATank>(GetPawn());
+}
+
+void ATankPC::AimPlayerCrosshair() {
+    if (GetControlledTank()) {
+        // hit stuff
+    }
 }
