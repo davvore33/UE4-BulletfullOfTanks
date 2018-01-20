@@ -19,5 +19,6 @@ class BULLETFULLOFTANKS_API ATankPC : public APlayerController
 public:
     ATank* GetControlledTank() const;
 
+    virtual void Tick(float) override;
     virtual void BeginPlay() override;
 };
