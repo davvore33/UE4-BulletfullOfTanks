@@ -32,8 +32,8 @@ void ATankPC::AimPlayerCrosshair() {
         FVector HitLocation;
 
         if (GetSightRayHitLocation(OUT HitLocation)) {
-//            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
-//                   *HitLocation.ToString());
+            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
+                   *HitLocation.ToString());
 
         }
     }
@@ -42,20 +42,51 @@ void ATankPC::AimPlayerCrosshair() {
 bool ATankPC::GetSightRayHitLocation(OUT FVector &HitLocation) {
     int32 sizeX, sizeY;
     FVector2D ScreenLocation;
+    FVector LookDirection;
+
     GetViewportSize(sizeX, sizeY);
 
     ScreenLocation = FVector2D(sizeX * CrossHairXLocation,
                                sizeY * CrossHairYLocation);
 
-    return GetLookDirection(ScreenLocation, <#initializer#>);
+    if (GetLookDirection(ScreenLocation, LookDirection)) {
+        GetLookVectorHitLocation(LookDirection, HitLocation);
+    }
+
+    return true;
 }
 
 bool ATankPC::GetLookDirection(const FVector2D &ScreenLocation,
                                FVector &LookDirection) const {
     FVector CameraLocation;
+    struct FHitResult HitLocation;
+
     if (DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y,
                                        CameraLocation, LookDirection)) {
-        UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"),
-               *LookDirection.ToString());
+//        UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"),
+//               *LookDirection.ToString());
+
+        GetLookVectorHitLocation(LookDirection, HitLocation);
+    }
+}
+
+bool
+ATankPC::GetLookVectorHitLocation(const FVector &LookDirection,
+                                  OUT FVector &HitLocation) const {
+    FVector Start, End;
+    FHitResult hitResult;
+
+    Start = PlayerCameraManager->GetCameraLocation();
+    End = Start + (LookDirection * LineTraceRange);
+    if (GetWorld()->LineTraceSingleByChannel(
+            OUT &hitResult,
+            &Start,
+            &End,
+            ECollisionChannel::ECC_Visibility)) {
+        HitLocation = hitResult.Location;
+
+        return true;
+    } else {
+        return false;
     }
 }

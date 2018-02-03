@@ -30,7 +30,12 @@ private:
     float CrossHairXLocation = 0.5;
     UPROPERTY(EditAnywhere)
     float CrossHairYLocation = 0.5;
+    UPROPERTY(EditAnywhere)
+    float LineTraceRange = 1000000;
 
     bool GetLookDirection(const FVector2D &ScreenLocation,
                               FVector &LookDirection) const;
+
+	bool GetLookVectorHitLocation(const FVector &LookDirection,
+								  OUT FVector &HitLocation) const;
 };
