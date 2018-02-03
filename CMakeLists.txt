@@ -1,6 +1,9 @@
 cmake_minimum_required (VERSION 2.6)
 project (UE4)
 set(CMAKE_CXX_STANDARD 11)
+
+SET(CMAKE_CXX_USE_RESPONSE_FILE_FOR_OBJECTS 1 CACHE BOOL "" FORCE)
+SET(CMAKE_CXX_USE_RESPONSE_FILE_FOR_INCLUDES 1 CACHE BOOL "" FORCE)
 set(CMAKE_CXX_COMPILER "C:/cygwin64/bin/g++.exe")
 set(CMAKE_C_COMPILER "C:/cygwin64/bin/gcc.exe")
 
@@ -8,7 +11,7 @@ include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediat
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/Definitions.cmake")
 include("C:/Users/matteo/Documents/Unreal Projects/BulletfullOfTanks/Intermediate/ProjectFiles/BulletfullOfTanksEditor.cmake")
 
-set(MONO_ROOT_PATH "C:/Program Files/Epic Games/UE_4.16/Engine/Binaries/DotNET")
+set(MONO_ROOT_PATH "C:/Program Files/Epic Games/UE_4.18/Engine/Binaries/DotNET")
 set(BUILD cd /d "${MONO_ROOT_PATH}")
 
 # Custom target for BulletfullOfTanksEditor project, Development configuration
