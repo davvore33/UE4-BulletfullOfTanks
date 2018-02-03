@@ -31,10 +31,11 @@ void ATankPC::AimPlayerCrosshair() {
     if (GetControlledTank()) {
         FVector HitLocation;
 
-        if (GetSightRayHitLocation(OUT HitLocation))
+        if (GetSightRayHitLocation(OUT HitLocation)) {
 //            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
 //                   *HitLocation.ToString());
 
+        }
     }
 }
 
@@ -46,5 +47,15 @@ bool ATankPC::GetSightRayHitLocation(OUT FVector &HitLocation) {
     ScreenLocation = FVector2D(sizeX * CrossHairXLocation,
                                sizeY * CrossHairYLocation);
 
-    return true;
+    return GetLookDirection(ScreenLocation, <#initializer#>);
+}
+
+bool ATankPC::GetLookDirection(const FVector2D &ScreenLocation,
+                               FVector &LookDirection) const {
+    FVector CameraLocation;
+    if (DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y,
+                                       CameraLocation, LookDirection)) {
+        UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"),
+               *LookDirection.ToString());
+    }
 }
