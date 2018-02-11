@@ -35,7 +35,15 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
     auto OurTankName = GetOwner()->GetName();
+    auto HeadLocation = Head->GetComponentLocation();
+    UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"), *OurTankName,
+           *HitLocation.ToString(), *HeadLocation.ToString());
+}
 
-    UE_LOG(LogTemp, Warning, TEXT("%s hits at: %s"), *OurTankName,
-           *HitLocation.ToString());
+void UTankAimingComponent::SetHead(UStaticMeshComponent *Head) {
+    UTankAimingComponent::Head = Head;
+}
+
+UStaticMeshComponent *UTankAimingComponent::GetHead() const {
+    return Head;
 }

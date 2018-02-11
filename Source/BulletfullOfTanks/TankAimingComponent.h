@@ -26,4 +26,10 @@ public:
 
 	void AimAt(FVector WorldSpaceAim);
 
+	UStaticMeshComponent *Head = nullptr;
+
+    UStaticMeshComponent *GetHead() const;
+
+    void SetHead(UStaticMeshComponent *Head);
+
 };

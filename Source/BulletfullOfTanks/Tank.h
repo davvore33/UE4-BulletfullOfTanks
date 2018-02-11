@@ -15,6 +15,9 @@ class BULLETFULLOFTANKS_API ATank : public APawn
 public:
 	void AimAt(FVector HitLocation);
 
+    UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetHead(UStaticMeshComponent *Head);
+
 protected:
     UTankAimingComponent *TankAimingComponent = nullptr;
 
