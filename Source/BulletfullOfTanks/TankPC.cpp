@@ -14,8 +14,6 @@ void ATankPC::BeginPlay() {
     } else {
         UE_LOG(LogTemp, Error, TEXT("Got a NULL"));
     }
-
-    UE_LOG(LogTemp, Warning, TEXT("Begin Play"));
 }
 
 void ATankPC::Tick(float DeltaTime) {
@@ -32,9 +30,7 @@ void ATankPC::AimPlayerCrosshair() {
         FVector HitLocation;
 
         if (GetSightRayHitLocation(OUT HitLocation)) {
-            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
-                   *HitLocation.ToString());
-
+            GetControlledTank()->AimAt(HitLocation);
         }
     }
 }
@@ -59,15 +55,13 @@ bool ATankPC::GetSightRayHitLocation(OUT FVector &HitLocation) {
 bool ATankPC::GetLookDirection(const FVector2D &ScreenLocation,
                                FVector &LookDirection) const {
     FVector CameraLocation;
-    struct FHitResult HitLocation;
 
     if (DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y,
                                        CameraLocation, LookDirection)) {
 //        UE_LOG(LogTemp, Warning, TEXT("Look Direction: %s"),
 //               *LookDirection.ToString());
-
-        GetLookVectorHitLocation(LookDirection, HitLocation);
     }
+    return true;
 }
 
 bool
@@ -78,15 +72,17 @@ ATankPC::GetLookVectorHitLocation(const FVector &LookDirection,
 
     Start = PlayerCameraManager->GetCameraLocation();
     End = Start + (LookDirection * LineTraceRange);
+
     if (GetWorld()->LineTraceSingleByChannel(
-            OUT &hitResult,
-            &Start,
-            &End,
+            OUT hitResult,
+            Start,
+            End,
             ECollisionChannel::ECC_Visibility)) {
         HitLocation = hitResult.Location;
 
         return true;
     } else {
+        HitLocation = FVector(0);
         return false;
     }
 }
