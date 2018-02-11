@@ -14,8 +14,6 @@ void ATankPC::BeginPlay() {
     } else {
         UE_LOG(LogTemp, Error, TEXT("Got a NULL"));
     }
-
-    UE_LOG(LogTemp, Warning, TEXT("Begin Play"));
 }
 
 void ATankPC::Tick(float DeltaTime) {
@@ -32,9 +30,7 @@ void ATankPC::AimPlayerCrosshair() {
         FVector HitLocation;
 
         if (GetSightRayHitLocation(OUT HitLocation)) {
-            UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"),
-                   *HitLocation.ToString());
-
+            GetControlledTank()->AimAt(HitLocation);
         }
     }
 }
@@ -86,6 +82,7 @@ ATankPC::GetLookVectorHitLocation(const FVector &LookDirection,
 
         return true;
     } else {
+        HitLocation = FVector(0);
         return false;
     }
 }
